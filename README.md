@@ -9,12 +9,11 @@ This is a simple Tic-Tac-Toe game built using HTML, CSS, and JavaScript. The gam
 - [Installation](#installation)
 - [Usage](#usage)
 - [Code Overview](#code-overview)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Demo
 
-You can play the game [here](https://your-demo-link.com).
+You can play the game [here]([(https://<username>.github.io/Tic-Tac-Toe/)).
 
 ## Features
 
