@@ -13,7 +13,7 @@ This is a simple Tic-Tac-Toe game built using HTML, CSS, and JavaScript. The gam
 
 ## Demo
 
-You can play the game [here]([(https://<username>.github.io/Tic-Tac-Toe/)).
+You can play the game [here](https://<username>.github.io/Tic-Tac-Toe/).
 
 ## Features
 
@@ -83,3 +83,93 @@ This file contains the structure of the game. It includes a title, a main sectio
     <script src="app.js"></script>
   </body>
 </html>
+
+### app.js
+
+let boxes = document.querySelectorAll(".box");
+let resetBtn = document.querySelector("#reset-btn");
+let newGameBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
+
+let turnO = true; // Player O starts
+let count = 0; // Track the number of turns
+
+const winPatterns = [
+  [0, 1, 2],
+  [0, 3, 6],
+  [0, 4, 8],
+  [1, 4, 7],
+  [2, 5, 8],
+  [2, 4, 6],
+  [3, 4, 5],
+  [6, 7, 8],
+];
+
+const resetGame = () => {
+  turnO = true;
+  count = 0;
+  enableBoxes();
+  msgContainer.classList.add("hide");
+};
+
+boxes.forEach((box) => {
+  box.addEventListener("click", () => {
+    if (turnO) {
+      box.innerText = "O";
+      turnO = false;
+    } else {
+      box.innerText = "X";
+      turnO = true;
+    }
+    box.disabled = true;
+    count++;
+
+    let isWinner = checkWinner();
+
+    if (count === 9 && !isWinner) {
+      gameDraw();
+    }
+  });
+});
+
+const gameDraw = () => {
+  msg.innerText = `Game was a Draw.`;
+  msgContainer.classList.remove("hide");
+  disableBoxes();
+};
+
+const disableBoxes = () => {
+  boxes.forEach(box => box.disabled = true);
+};
+
+const enableBoxes = () => {
+  boxes.forEach(box => {
+    box.disabled = false;
+    box.innerText = "";
+  });
+};
+
+const showWinner = (winner) => {
+  msg.innerText = `Congratulations, Winner is ${winner}`;
+  msgContainer.classList.remove("hide");
+  disableBoxes();
+};
+
+const checkWinner = () => {
+  for (let pattern of winPatterns) {
+    let [pos1, pos2, pos3] = pattern;
+    let pos1Val = boxes[pos1].innerText;
+    let pos2Val = boxes[pos2].innerText;
+    let pos3Val = boxes[pos3].innerText;
+
+    if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
+      showWinner(pos1Val);
+      return true;
+    }
+  }
+  return false;
+};
+
+newGameBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", resetGame);
