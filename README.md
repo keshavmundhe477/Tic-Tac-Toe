@@ -27,7 +27,7 @@ You can play the game [here](https://keshavmundhe477.github.io/Tic-Tac-Toe/).
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/tic-tac-toe.git
+    git clone https://github.com/keshavmundhe477/tic-tac-toe.git
     ```
 2. Navigate to the project directory:
     ```sh
